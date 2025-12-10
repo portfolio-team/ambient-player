@@ -1,4 +1,5 @@
-const R2_BASE_URL = "https://pub-794a6166df094bb0ad0355e364217a0d.r2.dev/audio/miss"; // R2のベースURLを指定
+
+import { R2_BASE_URL } from '../config';
 
 export async function fetchSegmentList(m3u8Url: string): Promise<string[]> {
     const res = await fetch(m3u8Url);

@@ -2,6 +2,7 @@
 import { useState, useEffect } from "react";
 import { playSegmentsSequentially } from "@/lib/audioPlayer";
 import { fetchSegmentList } from "@/lib/parseM3U8";
+import { R2_BASE_URL, INDEX_FILE_PATH } from '../config';
 
 export default function AudioPlayerPage() {
   const [isPlaying, setIsPlaying] = useState(false);
@@ -16,7 +17,7 @@ export default function AudioPlayerPage() {
 
   // m3u8解析してセグメント取得
   useEffect(() => {
-    fetchSegmentList("https://pub-794a6166df094bb0ad0355e364217a0d.r2.dev/audio/miss/index.m3u8").then(setSegments);
+    fetchSegmentList(`${R2_BASE_URL}/${INDEX_FILE_PATH}`).then(setSegments);
   }, []);
 
   const handlePlay = async () => {

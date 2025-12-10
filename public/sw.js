@@ -1,10 +1,10 @@
 const CACHE_NAME = "audio-cache-v2";
-const R2_BASE_URL = "https://pub-794a6166df094bb0ad0355e364217a0d.r2.dev"; // R2のベースURLを指定
+importScripts('./config.js');
 
 self.addEventListener("install", (event) => {
   // install時点ではindex.m3u8だけ先にキャッシュ
   event.waitUntil(
-    caches.open(CACHE_NAME).then((cache) => cache.add(`${R2_BASE_URL}/audio/miss/index.m3u8`))
+    caches.open(CACHE_NAME).then((cache) => cache.add(`${self.R2_BASE_URL}/${self.INDEX_FILE_PATH}`))
   );
 });
 
@@ -21,7 +21,7 @@ self.addEventListener("fetch", (event) => {
 
             // Cloudflare R2 の URL に置き換え
             const r2Url = url.pathname.endsWith(".wav")
-            ? `${R2_BASE_URL}${url.pathname}`
+            ? `${self.R2_BASE_URL}${url.pathname}`
             : event.request.url;
             console.log(`Fetching from R2: ${r2Url}`, ` gg::${url.pathname}`);
 
