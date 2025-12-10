@@ -5,7 +5,6 @@ import { fetchSegmentList } from "@/lib/parseM3U8";
 
 export default function AudioPlayerPage() {
   const [isPlaying, setIsPlaying] = useState(false);
-  const [audioCtx, setAudioCtx] = useState<AudioContext | null>(null);
   const [segments, setSegments] = useState<string[]>([]);
 
   // Service Worker 登録
@@ -22,10 +21,7 @@ export default function AudioPlayerPage() {
 
   const handlePlay = async () => {
     if (segments.length === 0) return;
-    const ctx = new AudioContext();
-    setAudioCtx(ctx);
-    console.log(segments);
-    await playSegmentsSequentially(ctx, segments);
+    await playSegmentsSequentially(segments);
     setIsPlaying(true);
   };
 
