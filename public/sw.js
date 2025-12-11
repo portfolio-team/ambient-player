@@ -4,7 +4,7 @@ const R2_BASE_URL = "https://pub-794a6166df094bb0ad0355e364217a0d.r2.dev"; // R2
 self.addEventListener("install", (event) => {
   // install時点ではindex.m3u8だけ先にキャッシュ
   event.waitUntil(
-    caches.open(CACHE_NAME).then((cache) => cache.add(`${R2_BASE_URL}/audio/miss/index.m3u8`))
+    caches.open(CACHE_NAME).then((cache) => cache.add(`${R2_BASE_URL}/audio/ambient_DEMO/index.m3u8`))
   );
 });
 
